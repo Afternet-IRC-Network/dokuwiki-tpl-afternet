@@ -1,0 +1,594 @@
+/**
+ * This file provides the main design styles for the
+ * bits that surround the content.
+ *
+ * @author Anika Henke <anika@selfthinker.org>
+ * @author Andreas Gohr <andi@splitbrain.org>
+ * @author Clarence Lee <clarencedglee@gmail.com>
+ */
+
+/* header
+********************************************************************/
+
+body, html {
+    background: #000530;
+}
+
+#dokuwiki__header {
+    padding: 2em 0 1.5em;
+
+    .headings,
+    .tools {
+        margin-bottom: 1.5em;
+        width: 49%;
+    }
+    .tools {
+        margin-top: .2em;
+    }
+
+    h1 {
+        margin: 0;
+        font-size: 1.5em;
+        font-weight: normal;
+
+        img {
+            float: left;
+            margin-right: .5em;
+        }
+
+        span {
+            display: block;
+            padding-top: 10px;
+        }
+
+        a {
+            text-decoration: none;
+            color: @ini_text;
+            background-color: inherit;
+        }
+    }
+
+    p.claim {
+        margin-bottom: 0;
+        font-size: 0.875em;
+    }
+
+    /* make all links in header (including breadcrumb and interwiki) same colour as the rest */
+    a {
+        color: @ini_link;
+        background-color: inherit;
+    }
+}
+
+[dir=rtl] #dokuwiki__header h1 img {
+    float: right;
+    margin-left: .5em;
+    margin-right: 0;
+}
+
+/* tools
+********************************************************************/
+
+/* highlight selected tool */
+.mode_admin a.action.admin,
+.mode_login a.action.login,
+.mode_register a.action.register,
+.mode_profile a.action.profile,
+.mode_recent a.action.recent,
+.mode_index a.action.index,
+.mode_media a.action.media,
+.mode_revisions a.action.revs,
+.mode_backlink a.action.backlink,
+.mode_subscribe a.action.subscribe {
+    font-weight: bold;
+}
+
+#dokuwiki__header .tools {
+    ul {
+        padding-left: 0;
+        margin-bottom: 0;
+    }
+
+    li {
+        font-size: 0.875em;
+        margin-left: 1em;
+        list-style: none;
+        display: inline;
+    }
+
+    form.search div.ajax_qsearch li {
+        font-size: 1em;
+        margin-left: 0;
+        display: block;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+[dir=rtl] #dokuwiki__header .tools li {
+    margin-right: 1em;
+    margin-left: 0;
+}
+
+#dokuwiki__usertools a.action,
+#dokuwiki__usertools a.iw_user {
+    padding-left: 20px;
+    background: transparent url(images/usertools.png) no-repeat 0 0;
+}
+
+[dir=rtl] #dokuwiki__usertools a.action {
+    padding-left: 0;
+    padding-right: 20px;
+}
+
+#dokuwiki__header .mobileTools {
+    display: none; /* hide mobile tools dropdown to only show in mobile view */
+}
+
+/*____________ user tools ____________*/
+
+#dokuwiki__usertools {
+   line-height: 1.5em;
+   display: block;
+
+   margin-top: 10px;
+   margin-right: 10px;
+   overflow: hidden;
+   height: 80px;
+
+   float: right;
+   text-align: right;
+
+    div.user {
+        color: white;
+        
+    }
+    ul li {
+        list-style: none;
+        float: right;
+        color: white;
+        a {
+            color: white;
+        }
+    }
+}
+
+#dokuwiki__usertoolsXXX {
+    position: relative;
+    top: 10px;
+    right: -66%;
+    text-align: right;
+    width: 20%;
+
+    ul {
+        margin: 0 auto;
+        padding: 0;
+        max-width: @ini_site_width;
+    }
+
+    a.action.admin {
+        background-position: left 0;
+    }
+
+    a.iw_user,
+    a.action.profile {
+        background-position: left -32px;
+    }
+
+    a.action.register {
+        background-position: left -64px;
+    }
+
+    a.action.login {
+        background-position: left -96px;
+    }
+
+    a.action.logout {
+        background-position: left -128px;
+    }
+}
+
+[dir=rtl] #dokuwiki__usertools {
+    text-align: left;
+    left: 40px;
+    right: auto;
+
+    a.action.admin {
+        background-position: right 0;
+    }
+
+    a.action.profile {
+        background-position: right -32px;
+    }
+
+    a.action.register {
+        background-position: right -64px;
+    }
+
+    a.action.login {
+        background-position: right -96px;
+    }
+
+    a.action.logout {
+        background-position: right -128px;
+    }
+}
+
+/*____________ site tools ____________*/
+
+#dokuwiki__sitetools {
+    text-align: right;
+
+    form.search {
+        font-size: 0.875em;
+    }
+}
+
+[dir=rtl] #dokuwiki__sitetools {
+    text-align: left;
+}
+
+form.search {
+    display: block;
+    position: relative;
+    margin-bottom: 0.5em;
+
+    input {
+        width: 18em;
+        padding: .35em 22px .35em .1em;
+    }
+
+    button {
+        background: transparent url(images/search.png) no-repeat 0 0;
+        border-width: 0;
+        width: 19px;
+        height: 14px;
+        text-indent: -99999px;
+        margin-left: -20px;
+        box-shadow: none;
+        padding: 0;
+    }
+}
+
+[dir=rtl] form.search {
+    input {
+        padding: .35em .1em .35em 22px;
+    }
+
+    button {
+        background-position: 5px 0;
+        margin-left: 0;
+        margin-right: -20px;
+        position: relative;
+    }
+}
+
+/*____________ breadcrumbs ____________*/
+
+.dokuwiki div.breadcrumbs {
+    position: absolute;
+    top: 145px;
+    padding-left: 1em;
+    font-weight: normal;
+}
+
+/*
+.dokuwiki div.breadcrumbs {
+    xxborder-top: 1px solid @ini_border;
+    xxborder-bottom: 1px solid @ini_background;
+    xxmargin-bottom: .5em;
+    font-size: 0.875em;
+    clear: both;
+
+    div {
+        padding: .1em .35em;
+    }
+
+    div:only-child {
+        border-top: 1px solid @ini_background;
+        border-bottom: 1px solid @ini_border;
+    }
+
+    div:first-child {
+        border-top: 1px solid @ini_background;
+    }
+
+    div:last-child {
+        border-bottom: 1px solid @ini_border;
+    }
+
+    .bcsep {
+        font-size: 0.75em;
+    }
+}
+*/
+
+#IE8 .dokuwiki div.breadcrumbs div {
+    border-bottom: 1px solid @ini_border;
+}
+
+/* sidebar
+********************************************************************/
+
+.dokuwiki .aside {
+    font-size: 0.875em;
+    overflow: hidden;
+    word-wrap: break-word;
+
+    /* make sidebar more condensed */
+
+    h1 {
+        font-size: 1.714em;
+        margin-bottom: .292em;
+    }
+
+    h2 {
+        margin-bottom: .333em;
+    }
+
+    h3 {
+        margin-bottom: .444em;
+    }
+
+    h4 {
+        margin-bottom: .5em;
+    }
+
+    h5 {
+        margin-bottom: .5714em;
+    }
+
+    p,
+    ul,
+    ol,
+    dl,
+    pre,
+    table,
+    fieldset,
+    hr,
+    blockquote,
+    address {
+        margin-bottom: .7em;
+    }
+
+    ul,
+    ol {
+        padding-left: .5em;
+    }
+
+    li ul,
+    li ol {
+        margin-bottom: 0;
+        padding: 0;
+    }
+
+    a:link,
+    a:visited {
+        color: @ini_link;
+        background-color: inherit;
+    }
+}
+
+[dir=rtl] .dokuwiki .aside ul,
+[dir=rtl] .dokuwiki .aside ol {
+    padding-right: .5em;
+}
+
+/* content
+********************************************************************/
+
+.dokuwiki .pageId {
+    float: right;
+    margin-right: -1em;
+    margin-bottom: -1px;
+    margin-top: -1.5em;
+    overflow: hidden;
+    padding: 0.5em 1em 0;
+
+    span {
+        font-size: 0.875em;
+        border: solid @ini_background_alt;
+        border-width: 1px 1px 0;
+        background-color: @ini_background;
+        color: @ini_text_alt;
+        padding: .1em .35em;
+        border-top-left-radius: 2px;
+        border-top-right-radius: 2px;
+        box-shadow: 0 0 .5em @ini_text_alt;
+        display: block;
+    }
+}
+
+.dokuwiki div.page {
+    clear: both;
+    background: @ini_background;
+    color: inherit;
+    border: 1px solid @ini_background_alt;
+    box-shadow: 0 0 .5em @ini_text_alt;
+    border-radius: 2px;
+    padding: 1.556em 2em 2em;
+    margin-bottom: .5em;
+    overflow: hidden;
+    word-wrap: break-word;
+}
+
+.dokuwiki .docInfo {
+    font-size: 0.875em;
+    text-align: right;
+    color: white;
+}
+
+/* license note under edit window */
+.dokuwiki div.license {
+    font-size: 93.75%;
+}
+
+[dir=rtl] .dokuwiki .docInfo {
+    text-align: left;
+}
+
+[dir=rtl] .dokuwiki .pageId {
+    float: left;
+    margin-left: -1em;
+    margin-right: 0;
+}
+
+/* footer
+********************************************************************/
+
+.dokuwiki .wrapper {
+    margin-bottom: 1.4em;
+}
+
+#dokuwiki__footer {
+    margin-bottom: 1em;
+    text-align: center;
+    color: white;
+
+    > .pad {
+        font-size: 0.875em;
+    }
+
+    div.license {
+        margin-bottom: 0.5em;
+        font-size: 100%;
+    }
+
+    div.buttons a {
+        img {
+            opacity: 0.5;
+        }
+
+        &:hover img,
+        &:active img,
+        &:focus img {
+            opacity: 1;
+        }
+    }
+
+}
+
+[dir=rtl] #dokuwiki__footer .license img {
+    margin: 0 0 0 .5em;
+}
+
+div#dokuwiki__content div.mainbody {
+    box-shadow: none;
+    border-radius: 0 0 2px 2px;
+    box-shadow: none;
+    border: none;
+    margin-top: -5px;
+    padding-top: 0px;
+    margin-bottom: 0px;
+}
+
+div.banner {
+   max-width: @ini_site_width;
+   background-image: url(/lib/tpl/afternet/images/banner_crpt.png);
+   background-repeat: repeat-x;
+   height:170px;
+   padding: 0px;
+   margin: 0px;
+   text-align: center;
+}
+
+div.curlies {
+   background-image: url(/lib/tpl/afternet/images/curlies.gif);
+   background-repeat: repeat-x;
+   background-position: -35px 0px;
+   width: 100%;
+   margin: 0px;
+   padding: 0px;
+}
+
+div.menu_lt {
+   color: white;
+   font-size: 14px;
+   font-weight: bold;
+   font-family: sans-serif;
+   margin-left: 10px;
+   text-align: left;
+   width: 33%;
+   height: 1.2em;
+   display: block;
+   position: relative;
+   top: 97px;
+   overflow: hidden;
+
+}
+div.menu_lb {
+   color: white;
+   font-size: 14px;
+   font-weight: bold;
+   font-family: sans-serif;
+   text-align: left;
+   margin-left: 10px;
+   width: 36%;
+   height: 1.2em;
+   display: block;
+   position: relative;
+   top: 106px;
+   overflow: hidden;
+}
+
+div.menu_rt {
+   color: white;
+   font-size: 14px;
+   font-weight: bold;
+   font-family: sans-serif;
+   margin-right: 10px;
+   text-align: right;
+   width: 33%;
+   height: 1.5em;
+   line-height: 1.5em;
+   display: block;
+   position: relative;
+
+   right: -66%;
+   top: 62px;
+   overflow: hidden;
+
+}
+div.menu_rb {
+   color: white;
+   font-size: 14px;
+   font-weight: normal;
+   font-family: sans-serif;
+   text-align: right;
+   margin-right: 10px;
+   width: 33%;
+   height: 1.5em;
+   display: block;
+   position: relative;
+   right: -66%;
+   top: 66px;
+   overflow: hidden;
+   line-height: 1.5em;
+}
+
+.anetlogo {
+    position: absolute; 
+    top: 5px;
+    left: 0;
+    right: 0;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+div.menu_rb form {
+display: inline;
+}
+div.menu_rb input.edit {
+width: 4em; font-size: 14px; line-height: 0.5em; padding-top: 0px; margin-top: 0px; height: 1.1em;
+}
+div.menu_rb .button {
+}
+div.ajax_qsearch {
+   display: inline;
+}
+
+a.menu {
+  color: white;
+  text-decoration: none;
+}
+

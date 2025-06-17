@@ -21,12 +21,7 @@ if (!defined('DOKU_INC')) die();
                                 ?>
                             <ul class="usertools">
                             <?php
-                                    tpl_toolsevent('usertools', array(
-                                        tpl_action('admin', true, 'li', true),
-                                        tpl_action('profile', true, 'li', true),
-                                        tpl_action('register', true, 'li', true),
-                                        tpl_action('login', true, 'li', true)
-                                    ));
+echo (new \dokuwiki\Menu\UserMenu())->getListItems('action ');
                                 ?>
                             </ul>
                         </div>
